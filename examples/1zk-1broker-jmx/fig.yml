@@ -1,0 +1,16 @@
+zookeeper:
+  image: jplock/zookeeper:3.4.6
+  ports:
+    - "2181:2181"
+kafka1:
+  image: alexguev/kafka:0.8.1.1
+  ports:
+    - "9091:9091"
+    - "8888:8888"
+  links:
+    - zookeeper:zk
+  environment:
+    BROKER_ID: 1
+    HOST_IP: 192.168.59.104
+    PORT: 9091
+    KAFKA_JMX_OPTS: -Dcom.sun.management.jmxremote -Djava.rmi.server.hostname=192.168.59.104 -Dcom.sun.management.jmxremote.port=8888 -Dcom.sun.management.jmxremote.rmi.port=8888 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.ssl=false

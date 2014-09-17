@@ -1,0 +1,28 @@
+zookeeper:
+  image: jplock/zookeeper:3.4.6
+  ports:
+    - "2181:2181"
+kafka1:
+  image: alexguev/kafka:0.8.1.1
+  ports:
+    - "9091:9091"
+  links:
+    - zookeeper:zk
+    - graphite:graphite
+  environment:
+    BROKER_ID: 1
+    HOST_IP: 192.168.59.104
+    PORT: 9091
+    GRAPHITE_ENABLED: true
+    GRAPHITE_GROUP: kafka1
+graphite:
+  image: hopsoft/graphite-statsd:latest
+  ports:
+    - "8881:80"
+  expose:
+    - "2003"
+  command: /opt/hopsoft/graphite-statsd/start
+  volumes:
+    - /opt/graphite/storage
+    - /opt/graphite/conf
+    - /var/log/graphite

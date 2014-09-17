@@ -1,0 +1,24 @@
+zookeeper:
+  image: jplock/zookeeper:3.4.6
+  ports:
+    - "2181:2181"
+kafka1:
+  image: alexguev/kafka:0.8.1.1
+  ports:
+    - "9091:9091"
+  links:
+    - zookeeper:zk
+  environment:
+    BROKER_ID: 1
+    HOST_IP: 192.168.59.104
+    PORT: 9091
+kafka2:
+  image: alexguev/kafka:0.8.1.1
+  ports:
+    - "9092:9092"
+  links:
+    - zookeeper:zk
+  environment:
+    BROKER_ID: 2
+    HOST_IP: 192.168.59.104
+    PORT: 9092

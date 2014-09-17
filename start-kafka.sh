@@ -23,13 +23,6 @@ if [ "$GRAPHITE_ENABLED" = "True" ]; then
     if [ "$GRAPHITE_GROUP" != "" ]; then
       echo "kafka.graphite.metrics.group=$GRAPHITE_GROUP" >> $KAFKA_HOME/config/server.properties
     fi
-    if [ "$GRAPHITE_METRICS_EXCLUDE_REGEX" != "" ]; then
-      echo "kafka.graphite.metrics.exclude.regex=$GRAPHITE_METRICS_EXCLUDE_REGEX" >> $KAFKA_HOME/config/server.properties
-    fi
 fi
-
-echo ----
-cat $KAFKA_HOME/config/server.properties
-echo ----
 
 $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties

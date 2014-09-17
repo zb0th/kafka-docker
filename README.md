@@ -1,22 +1,28 @@
+WIP!
+====
+
+
 kafka-docker
 ============
 
-Dockerfile for [Apache Kafka](http://kafka.apache.org/)
+Yet another Dockerfile for [Apache Kafka](http://kafka.apache.org/).
 
-The image is available directly from https://index.docker.io
+This is a fork of [wurstmeister's](https://github.com/wurstmeister/kafka-docker).
 
-##Quickstart
+This fork adds support for:
 
-```
-export START_SCRIPT=https://raw2.github.com/wurstmeister/kafka-docker/master/start-broker.sh
-curl -Ls $START_SCRIPT | bash /dev/stdin 1 9092 <your-host-ip>
-```
+- publish metrics to graphite
+- JMX
 
-Note: Do not use localhost or 127.0.0.1 as the host ip if you want to run multiple brokers. 
+The image is (will be) available directly from https://index.docker.io
 
-##Tutorial
+##Examples
 
-[http://wurstmeister.github.io/kafka-docker/](http://wurstmeister.github.io/kafka-docker/)
+You need [fig](http://www.fig.sh/) to run the examples.
 
+- 1 ZooPeeker / 1 Broker
+- 1 ZooPeeker / 2 Brokers
+- 1 ZooPeeker / 1 Brokers / Graphite
+- 1 ZooPeeker / 1 Brokers with JMX
 
 
